@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{%block title%}User Registration{%endblock title%}
+
+{%block body%}
+<div class="container py-5">
+    <div class="cc-register-layout">
+        <div class="cc-register-sidebar cc-animate-fadeInUp">
+            <div class="cc-card h-100">
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <div class="cc-feature-icon mx-auto mb-3">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+                        <h3>Registration</h3>
+                        <p class="text-muted">Welcome to CareCast application!</p>
+                    </div>
+
+                    <img src="/static/register.webp" class="rounded-3 w-100 mb-4" alt="Doctor">
+
+                    <h6 class="fw-bold mb-3"><i class="fa-solid fa-star me-2 text-warning"></i>Benefits of Registration</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fa-solid fa-check-circle text-success me-2"></i>Schedule appointments with healthcare professionals.</li>
+                        <li class="mb-2"><i class="fa-solid fa-check-circle text-success me-2"></i>Consult with doctors according to your specific needs.</li>
+                        <li class="mb-2"><i class="fa-solid fa-check-circle text-success me-2"></i>Receive your online health report.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="cc-register-form-area cc-animate-fadeInUp cc-delay-1">
+            <div class="cc-card h-100">
+                <div class="card-body p-4">
+                    <h4 class="mb-4"><i class="fa-solid fa-clipboard-list me-2 text-primary"></i>Create Your Account</h4>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <br>
+                        <button type="submit" class="btn btn-cc-primary w-100">
+                            <i class="fa-solid fa-user-plus me-2"></i>Register
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock body%}

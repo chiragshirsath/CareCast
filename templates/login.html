@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{%block title%}Login{%endblock title%}
+
+{%block body%}
+<div class="cc-auth-wrapper">
+    <div class="cc-auth-card cc-animate-fadeInUp">
+        <div class="text-center mb-4">
+            <div class="cc-feature-icon mx-auto mb-3">
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </div>
+            <h2>Welcome Back</h2>
+            <p class="text-muted">Let's get back to thinking about our health!</p>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label"><i class="fa-solid fa-user me-1"></i> Username</label>
+                <input type="text" name="username" placeholder="Enter your username" class="cc-auth-input">
+            </div>
+            <div class="mb-3">
+                <label class="form-label"><i class="fa-solid fa-lock me-1"></i> Password</label>
+                <input type="password" name="password" placeholder="Enter your password" class="cc-auth-input">
+            </div>
+            <button type="submit" class="btn btn-cc-primary w-100 mt-3">
+                <i class="fa-solid fa-right-to-bracket me-2"></i>Login
+            </button>
+        </form>
+        <p class="text-center text-muted mt-4 mb-0 small">
+            Don't have an account? <a href="/register">Register here</a>
+        </p>
+    </div>
+</div>
+{%endblock body%}
