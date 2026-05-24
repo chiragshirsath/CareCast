@@ -1,0 +1,61 @@
+{% extends "login_base.html" %}
+
+{%block title%}Take Prediction{%endblock title%}
+
+{%block body%}
+
+<div class="container py-5">
+    <div class="cc-page-header text-center">
+        <h1 class="cc-page-title"><i class="fa-solid fa-stethoscope me-2 cc-text-gradient"></i>Health Predictions</h1>
+        <p class="cc-page-subtitle">Choose a prediction test to get AI-powered health insights</p>
+    </div>
+
+    <div class="row g-4 mt-2">
+        <div class="col-md-6 col-lg-4 cc-animate-fadeInUp">
+            <div class="cc-card h-100">
+                <div class="card-body d-flex flex-column align-items-start p-4">
+                    <div class="cc-feature-icon mb-3">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h4 class="fw-bold mb-2">Mental Disorder Prediction</h4>
+                    <p class="text-muted flex-grow-1">A mental disorder is a clinically significant behavioral or psychological pattern that causes distress or impairment in functioning.</p>
+                    <a class="btn btn-cc-primary mt-3" href="/mental_disorder">
+                        <i class="fa-solid fa-arrow-right me-2"></i>Take Prediction
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 cc-animate-fadeInUp cc-delay-1">
+            <div class="cc-card h-100">
+                <div class="card-body d-flex flex-column align-items-start p-4">
+                    <div class="cc-feature-icon mb-3">
+                        <i class="fa-solid fa-venus"></i>
+                    </div>
+                    <h4 class="fw-bold mb-2">PCOS Prediction</h4>
+                    <p class="text-muted flex-grow-1">PCOS (Polycystic Ovary Syndrome) is a hormonal disorder characterized by enlarged ovaries with small cysts and symptoms like irregular periods and excess androgen levels.</p>
+                    <a class="btn btn-cc-primary mt-3" href="/pcos">
+                        <i class="fa-solid fa-arrow-right me-2"></i>Take Prediction
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 cc-animate-fadeInUp cc-delay-2">
+            <div class="cc-card h-100">
+                <div class="card-body d-flex flex-column align-items-start p-4">
+                    <div class="cc-feature-icon mb-3">
+                        <i class="fa-solid fa-weight-scale"></i>
+                    </div>
+                    <h4 class="fw-bold mb-2">Obesity Prediction</h4>
+                    <p class="text-muted flex-grow-1">Obesity is a medical condition characterized by an excessive accumulation of body fat, to the extent that it may have a negative effect on health.</p>
+                    <a class="btn btn-cc-primary mt-3" href="/obesity">
+                        <i class="fa-solid fa-arrow-right me-2"></i>Take Prediction
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock body%}

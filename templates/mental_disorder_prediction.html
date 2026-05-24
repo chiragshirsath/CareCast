@@ -1,0 +1,206 @@
+{% extends "login_base.html" %}
+
+{% block title %}Mental Disorder{% endblock title %}
+
+{% block body %}
+
+<div class="container py-5">
+
+    {% if prediction_result %}
+        <div class="cc-result-banner d-flex align-items-center mb-4 cc-animate-slideDown">
+            <div>
+                <h5 class="mb-1 text-white"><i class="fa-solid fa-chart-line me-2"></i>Your prediction report: <strong> {{ prediction_result }} </strong></h5>
+                <a href="/report" class="text-white"><strong><i class="fa-solid fa-arrow-right me-1"></i>Proceed to obtain report</strong></a>
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Carousel -->
+    <div class="mb-5">
+        <div id="carouselExampleIndicators" class="carousel slide cc-carousel" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5"></button>
+            </div>
+            <div class="carousel-inner rounded-3 overflow-hidden">
+                <div class="carousel-item active">
+                    <div class="d-block w-100 bg-dark" style="height: 300px;"></div>
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 text-light rounded-3 p-3">
+                        <h3 class="my-2">Understand the Symptoms</h3>
+                        <p>Sadness: Persistent feeling of unhappiness or sorrow.</p>
+                        <p>Exhaustion: Extreme tiredness or fatigue.</p>
+                        <p>Euphoria: Intense feelings of happiness, excitement, or joy.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-block w-100 bg-dark" style="height: 300px;"></div>
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 text-light rounded-3 p-3">
+                        <h3 class="my-2">Understand the Symptoms</h3>
+                        <p>Sleep disorder: Disruption in normal sleep patterns, including difficulty falling asleep or staying asleep.</p>
+                        <p>Mood swings: Rapid changes in mood from one extreme to another.</p>
+                        <p>Suicidal thoughts: Thoughts of ending one's own life or suicidal ideation.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-block w-100 bg-dark" style="height: 300px;"></div>
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 text-light rounded-3 p-3">
+                        <h3 class="my-2">Understand the Symptoms</h3>
+                        <p>Anorexia: Loss of appetite or disinterest in eating, often resulting in significant weight loss.</p>
+                        <p>Anxiety: Feeling of worry, nervousness, or unease about future events.</p>
+                        <p>Try-explaining: Attempting to rationalize or justify one's behavior or actions.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-block w-100 bg-dark" style="height: 300px;"></div>
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 text-light rounded-3 p-3">
+                        <h3 class="my-2">Understand the Symptoms</h3>
+                        <p>Nervous breakdown: Severe mental or emotional collapse, often accompanied by an inability to function normally.</p>
+                        <p>Ignore & Move-on: Disregarding or dismissing something and continuing forward.</p>
+                        <p>Admitting mistakes: Acknowledging errors or faults in one's actions or behavior.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-block w-100 bg-dark" style="height: 300px;"></div>
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 text-light rounded-3 p-3">
+                        <h3 class="my-2">Understand the Symptoms</h3>
+                        <p>Overthinking: Excessive or obsessive rumination on thoughts or concerns.</p>
+                        <p>Aggressive response: Reacting in a hostile or violent manner to stimuli or situations.</p>
+                        <p>Optimism: Positive outlook or expectation for the future.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-block w-100 bg-dark" style="height: 300px;"></div>
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 text-light rounded-3 p-3">
+                        <h3 class="my-2">Understand the Symptoms</h3>
+                        <p>Sexual activity: Engagement in sexual behavior or activities.</p>
+                        <p>Concentration: Ability to focus attention and mental effort on a task or activity.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Prediction Form -->
+    <div class="cc-card cc-animate-fadeInUp">
+        <div class="card-body p-4">
+            <h4 class="fw-bold mb-4"><i class="fa-solid fa-brain me-2 cc-text-gradient"></i>Mental Disorder Assessment</h4>
+            <form action="/mental_disorder" method="post" id="mentalDisorderForm" class="cc-prediction-form">
+                {% csrf_token %}
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Sadness</strong></label>
+                        {{ form.sadness }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Euphoric</strong></label>
+                        {{ form.euphoric }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Exhausted</strong></label>
+                        {{ form.exhausted }}
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Sleep Disorder</strong></label>
+                        {{ form.sleep_disorder }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Mood Swings</strong></label>
+                        {{ form.mood_swing }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Suicidal thoughts</strong></label>
+                        {{ form.suicidal_thoughts }}
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Anorexia</strong></label>
+                        {{ form.anorxia }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Authority Respect</strong></label>
+                        {{ form.authority_respect }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Try Explanation</strong></label>
+                        {{ form.try_explanation }}
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Aggressive Response</strong></label>
+                        {{ form.aggressive_response }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Ignore and Move on</strong></label>
+                        {{ form.ignore_moveon }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Nervous Breakdown</strong></label>
+                        {{ form.nervous_breakdown }}
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Admit Mistakes</strong></label>
+                        {{ form.admit_mistakes }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Overthinking</strong></label>
+                        {{ form.overthink }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Sexual Activity</strong></label>
+                        {{ form.sexual_activity }}
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Concentration</strong></label>
+                        {{ form.concentration }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Optimism</strong></label>
+                        {{ form.optimisim }}
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-cc-primary w-100 mt-3">
+                    <i class="fa-solid fa-magnifying-glass-chart me-2"></i>Predict Mental Disorder
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mt-5 text-muted">
+        <h6><i class="fa-solid fa-database me-2"></i>Model trained on Kaggle Dataset</h6>
+        <p class="small"><a href="https://www.kaggle.com/datasets/cid007/mental-disorder-classification">
+                Mental Disorder Classification Dataset
+            </a> is a collection of 120 Psychology Patients with 17 Essential Symptoms to Diagnose
+            Mania Bipolar Disorder, Depressive Bipolar Disorder, Major Depressive Disorder, and
+            Normal Individuals.</p>
+    </div>
+
+</div>
+
+{% endblock body %}
