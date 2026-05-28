@@ -1,0 +1,133 @@
+{% extends "login_base.html" %}
+
+{% block title %}PCOS{% endblock title %}
+
+{% block body %}
+
+<div class="container py-5">
+
+    {% if prediction_result %}
+        <div class="cc-result-banner d-flex align-items-center mb-4 cc-animate-slideDown">
+            <div>
+                <h5 class="mb-1 text-white"><i class="fa-solid fa-chart-line me-2"></i>Your prediction report: <strong> {{ prediction_result }} </strong></h5>
+                <a href="/report" class="text-white"><strong><i class="fa-solid fa-arrow-right me-1"></i>Proceed to obtain report</strong></a>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="cc-card mb-4 cc-animate-fadeInUp">
+        <div class="card-body p-4">
+            <div class="d-flex align-items-center mb-3">
+                <div class="cc-feature-icon me-3">
+                    <i class="fa-solid fa-venus"></i>
+                </div>
+                <div>
+                    <h2 class="fw-bold mb-0">PCOS Prediction</h2>
+                </div>
+            </div>
+            <hr>
+            <p class="text-muted fst-italic">
+                Management of PCOS typically involves lifestyle changes such as diet
+                and exercise to manage weight, medications to regulate menstrual cycles and
+                hormone levels, and sometimes fertility treatments for those trying to conceive.
+            </p>
+        </div>
+    </div>
+
+    <div class="cc-card cc-animate-fadeInUp cc-delay-1">
+        <div class="card-body p-4">
+            <form action="/pcos" method="post" id="pcosDisorderForm" class="cc-prediction-form">
+                {% csrf_token %}
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Age</strong></label>
+                        <p class="cc-info-value"><strong>{{age}}</strong></p>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Weight</strong></label>
+                        <p class="cc-info-value"><strong>{{weight}} kg</strong></p>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Height</strong></label>
+                        <p class="cc-info-value"><strong>{{height}} cm</strong></p>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Period Frequency (in months)</strong></label>
+                        {{ form.period_frequency }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Gained weight recently?</strong></label>
+                        {{ form.gained_weight }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Excessive body/facial hair growth?</strong></label>
+                        {{ form.body_hair_growth }}
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Noticing skin darkening recently?</strong></label>
+                        {{ form.skin_dark }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Had Hair loss/hair thinning/baldness?</strong></label>
+                        {{ form.hair_problem }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Have pimples/acne on your face/jawline?</strong></label>
+                        {{ form.pimples }}
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Fast Food Consumption</strong></label>
+                        {{ form.fast_food }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Do you exercise on a regular basis?</strong></label>
+                        {{ form.exercise }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Do you experience mood swings?</strong></label>
+                        {{ form.mood_swing }}
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Menstrual Regularity</strong></label>
+                        {{ form.mentrual_regularity }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Duration of Menstrual Periods (in Days)</strong></label>
+                        {{ form.duration }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Blood Group</strong></label>
+                        {{ form.blood_grp }}
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-cc-primary w-100 mt-3">
+                    <i class="fa-solid fa-magnifying-glass-chart me-2"></i>Predict PCOS
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mt-5 text-muted">
+        <h6><i class="fa-solid fa-database me-2"></i>Model trained on Kaggle Dataset</h6>
+        <p class="small"><a href="https://www.kaggle.com/datasets/sahilkoli04/pcos2023">
+            PCOS 2023 Dataset
+            </a> is a collection of data women ranging from 18-45 whether or not suffering from PCOS.</p>
+    </div>
+
+</div>
+
+{% endblock body %}

@@ -1,0 +1,91 @@
+{% extends "login_base.html" %}
+
+{% block title %}Obesity Prediction{% endblock title %}
+
+{% block body %}
+
+<div class="container py-5">
+
+    {% if prediction_result %}
+        <div class="cc-result-banner d-flex align-items-center mb-4 cc-animate-slideDown">
+            <div>
+                <h5 class="mb-1 text-white"><i class="fa-solid fa-chart-line me-2"></i>Your prediction report: <strong> {{ prediction_result }} </strong></h5>
+                <a href="/report" class="text-white"><strong><i class="fa-solid fa-arrow-right me-1"></i>Proceed to obtain report</strong></a>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="cc-card mb-4 cc-animate-fadeInUp">
+        <div class="card-body p-4">
+            <div class="d-flex align-items-center mb-3">
+                <div class="cc-feature-icon me-3">
+                    <i class="fa-solid fa-weight-scale"></i>
+                </div>
+                <div>
+                    <h2 class="fw-bold mb-0">Obesity Prediction</h2>
+                </div>
+            </div>
+            <hr>
+            <p class="text-muted fst-italic">
+                Prevention efforts aimed at promoting healthy eating habits,
+                regular physical activity, and a supportive environment are
+                essential in addressing the obesity epidemic at a population level.
+            </p>
+        </div>
+    </div>
+
+    <div class="cc-card cc-animate-fadeInUp cc-delay-1">
+        <div class="card-body p-4">
+            <form action="/obesity" method="post" class="cc-prediction-form">
+                {% csrf_token %}
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Age</strong></label>
+                        <p class="cc-info-value"><strong>{{age}}</strong></p>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Weight</strong></label>
+                        <p class="cc-info-value"><strong>{{ user_data.weight }} kg</strong></p>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Height</strong></label>
+                        <p class="cc-info-value"><strong>{{ user_data.height }} cm</strong></p>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>BMI</strong></label>
+                        <p class="cc-info-value"><strong>{{ user_data.bmi }}</strong></p>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Gender</strong></label>
+                        <p class="cc-info-value"><strong>{{ user_data.gender }}</strong></p>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><strong>Activity Level</strong></label>
+                        {{ form.activityLevel }}
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-cc-primary w-100 mt-3">
+                    <i class="fa-solid fa-magnifying-glass-chart me-2"></i>Predict Obesity
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mt-5 text-muted">
+        <h6><i class="fa-solid fa-database me-2"></i>Model trained on Kaggle Dataset</h6>
+        <p class="small"><a href="https://www.kaggle.com/datasets/mrsimple07/obesity-prediction">
+            Obesity prediction
+            </a> offers a valuable resource for researchers, data scientists,
+            and healthcare professionals interested in exploring the
+            complex interplay of factors contributing to obesity and developing
+            effective intervention strategies.</p>
+    </div>
+
+</div>
+
+{% endblock body %}
