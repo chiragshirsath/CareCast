@@ -1,0 +1,43 @@
+{% extends "login_base.html" %}
+
+{% block title %}User History{% endblock title %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="cc-card cc-animate-fadeInUp">
+        <div class="card-body p-4">
+            <div class="d-flex align-items-center mb-4">
+                <div class="cc-feature-icon me-3">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+                <div>
+                    <h3 class="fw-bold mb-0">Medical History</h3>
+                    <p class="text-muted mb-0 small">Your past health prediction results</p>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table cc-table">
+                    <thead>
+                        <tr>
+                            <th scope="col"><i class="fa-solid fa-stethoscope me-1"></i> Test Taken</th>
+                            <th scope="col"><i class="fa-solid fa-calendar me-1"></i> Date of Examination</th>
+                            <th scope="col"><i class="fa-solid fa-chart-line me-1"></i> Predicted Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for history_entry in user_medical_history reversed%}
+                        <tr>
+                            <td>{{ history_entry.test_type }}</td>
+                            <td>{{ history_entry.date }}</td>
+                            <td><span class="cc-badge cc-badge-success"><i class="fa-solid fa-check-circle me-1"></i>{{ history_entry.result }}</span></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

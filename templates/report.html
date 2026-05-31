@@ -1,0 +1,135 @@
+{% extends "login_base.html" %}
+
+{% block title %}Report{% endblock title %}
+
+{% block body %}
+
+<div class="container py-5">
+    <div class="cc-report-section cc-animate-fadeInUp">
+        <div class="d-flex align-items-center mb-4">
+            <div class="cc-feature-icon me-3">
+                <i class="fa-solid fa-file-medical"></i>
+            </div>
+            <div>
+                <h2 class="fw-bold mb-0">Prediction Medical Report</h2>
+                <p class="text-muted mb-0">Medical Report Generated from Online Prediction</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <p class="mt-4">
+            <em>Dear <strong style="text-transform: capitalize;">{{user_name}}</strong>,<br><br>
+            We are pleased to provide you with your online prediction medical report.
+            This report pertains to a medical test conducted for <strong>{{user_info.test_type}}</strong>,
+            which was administered on <strong>{{user_info.date}}</strong>.
+            Based on the symptoms provided, your current health status is
+            indicated as <strong>{{user_info.result}}</strong>. We recommend that you consult with
+            a medical professional using this report as a reference.
+            Please download and keep this report for future reference.</em>
+        </p>
+
+        <br>
+
+        <h5 class="cc-text-gradient fw-bold mb-3"><i class="fa-solid fa-user me-2"></i>Personal Information</h5>
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <div class="cc-report-field-label">Name</div>
+                <div class="cc-report-field-value" style="text-transform: capitalize;">{{user_name}}</div>
+            </div>
+            <div class="col-md-4">
+                <div class="cc-report-field-label">Date of Birth</div>
+                <div class="cc-report-field-value">{{user_info.dob}}</div>
+            </div>
+            <div class="col-md-4">
+                <div class="cc-report-field-label">Gender</div>
+                <div class="cc-report-field-value">{{user_info.gender}}</div>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <div class="cc-report-field-label">Height</div>
+                <div class="cc-report-field-value">{{user_info.height}} cm</div>
+            </div>
+            <div class="col-md-4">
+                <div class="cc-report-field-label">Weight</div>
+                <div class="cc-report-field-value">{{user_info.weight}} kg</div>
+            </div>
+            <div class="col-md-4">
+                <div class="cc-report-field-label">Profession</div>
+                <div class="cc-report-field-value">{{user_info.profession}}</div>
+            </div>
+        </div>
+
+        <h5 class="cc-text-gradient fw-bold mb-3 mt-5"><i class="fa-solid fa-notes-medical me-2"></i>Medical Update</h5>
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <div class="cc-report-field-label">Test Taken</div>
+                <div class="cc-report-field-value"><strong>{{user_info.test_type}}</strong></div>
+            </div>
+            <div class="col-md-6">
+                <div class="cc-report-field-label">Date of Medical Test</div>
+                <div class="cc-report-field-value"><strong>{{user_info.date}}</strong></div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <div class="cc-report-field-label">Symptoms</div>
+            <div class="row g-2 mt-2">
+                {% for attr, value in attributes_values.items %}
+                <div class="col-md-4">
+                    <div class="cc-report-field-value">
+                        <div class="fw-bold small">{{ attr }}</div>
+                        <div class="text-danger fw-bold">{{ value }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-12">
+                <div class="cc-report-field-label">Expert Diagnose</div>
+                <div class="cc-report-field-value text-success"><strong>{{user_info.result}}</strong></div>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-12">
+                <div class="cc-report-field-label">Expert Advise</div>
+                <div class="cc-report-field-value text-muted"><em>{{user_info.advice}}</em></div>
+            </div>
+        </div>
+
+        <button id="printButton" class="btn btn-cc-primary w-100 my-4" onclick="printToPDF()">
+            <i class="fa-solid fa-print me-2"></i>Print Report
+        </button>
+
+        <p class="text-muted">
+            <em>We hope you have found the information provided helpful in addressing your concerns. Should you require any further assistance or have additional questions, please do not hesitate to reach out to us.<br><br>
+            Thank you for choosing our services. We appreciate the opportunity to assist you.<br><br>
+            <strong>
+                Best Regards,<br>
+            Team CareCast
+            </strong></em>
+        </p>
+    </div>
+</div>
+
+<script>
+    function printToPDF() {
+
+        var printButton = document.getElementById("printButton");
+        if (printButton) {
+            printButton.style.display = "none";
+        }
+
+        window.print();
+        if (printButton) {
+            printButton.style.display = "block";
+        }
+    }
+</script>
+
+{% endblock body %}
