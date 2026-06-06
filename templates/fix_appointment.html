@@ -1,0 +1,144 @@
+{% extends "login_base.html" %}
+
+{%block title%}Appointment{%endblock title%}
+
+{%block body%}
+
+<div class="container py-5">
+    <div class="cc-page-header cc-animate-fadeInUp">
+        <h1 class="cc-page-title"><i class="fa-solid fa-calendar-check me-2 cc-text-gradient"></i>Make an Appointment</h1>
+        <p class="cc-page-subtitle">
+            Please schedule an appointment with the doctor based on your requirements and preferences.
+            Review the profiles of available doctors before finalizing your appointment.
+        </p>
+    </div>
+
+    <div class="row g-4">
+        {% for doctor in doctors %}
+        <div class="col-md-6 cc-animate-fadeInUp">
+            <div class="cc-appointment-card h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="cc-feature-icon me-3" style="width:50px; height:50px; font-size:1.25rem;">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-0">Dr. {{ doctor.first_name }} {{doctor.last_name}}</h5>
+                            <span class="cc-badge cc-badge-primary mt-1">{{ doctor.specialization }}</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <p class="mb-2"><i class="fa-solid fa-hospital me-2 text-muted"></i><strong>Hospital:</strong> {{ doctor.hospital }}</p>
+                    <p class="mb-2"><i class="fa-solid fa-location-dot me-2 text-muted"></i><strong>Location:</strong> {{ doctor.city }}, {{ doctor.state }}, {{ doctor.country }}</p>
+                    <p class="mb-3"><i class="fa-solid fa-briefcase me-2 text-muted"></i><strong>Experience:</strong> {{ doctor.experience }}</p>
+
+                    <div class="d-flex gap-2 flex-wrap">
+                        <button type="button" class="btn btn-cc-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalLong{{ doctor.id }}">
+                            <i class="fa-solid fa-user me-1"></i> About Doctor
+                        </button>
+                        <button type="button" class="btn btn-cc-primary btn-sm" data-bs-toggle="modal" data-bs-target="#appointment{{ doctor.id }}">
+                            <i class="fa-solid fa-calendar-plus me-1"></i> Make an Appointment
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointment Modal -->
+        <div class="modal fade" id="appointment{{ doctor.id }}" tabindex="-1" role="dialog"
+            aria-labelledby="appointment{{ doctor.id }}" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="appointment{{ doctor.id }}">
+                            <i class="fa-solid fa-calendar-check me-2 cc-text-gradient"></i>
+                            Appointment with <span class="cc-text-gradient">Dr. {{ doctor.first_name }} {{doctor.last_name}}</span>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/fix_appointment" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="doctor" value="{{ doctor.id }}">
+                            <input type="hidden" name="status" value="Pending">
+
+                            <div class="mb-3">
+                                <label class="form-label"><strong>Your Contact Number</strong></label>
+                                {{ form.phone }}
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label"><strong>Your Email ID</strong></label>
+                                {{ form.email }}
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label"><strong>Appointment Date (MM/DD/YYYY)</strong></label>
+                                {{ form.appointmentDate}}
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label"><strong>Your Message for Doctor</strong></label>
+                                {{ form.message}}
+                            </div>
+
+                            <button type="submit" class="btn btn-cc-primary w-100">
+                                <i class="fa-solid fa-paper-plane me-2"></i>Submit
+                            </button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-cc-danger w-100" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Doctor Modal -->
+        <div class="modal fade" id="exampleModalLong{{ doctor.id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLongTitle{{ doctor.id }}" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle{{ doctor.id }}">
+                            <i class="fa-solid fa-user-doctor me-2 cc-text-gradient"></i>
+                            Dr. {{ doctor.first_name }} {{doctor.last_name}}
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="/static/back.png" class="img-fluid rounded-3 mb-3" alt="">
+                        <p class="text-muted">{{ doctor.about }}</p>
+                        <br>
+                        <table class="table">
+                            <tr>
+                                <th><i class="fa-solid fa-phone me-1"></i> Phone</th>
+                                <td>{{ doctor.phone }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="fa-solid fa-graduation-cap me-1"></i> Education</th>
+                                <td>{{ doctor.education }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="fa-solid fa-award me-1"></i> Expertise</th>
+                                <td>{{ doctor.expertise }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="fa-solid fa-briefcase me-1"></i> Experience</th>
+                                <td>{{ doctor.experience }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="fa-solid fa-language me-1"></i> Languages Known</th>
+                                <td>{{ doctor.languages }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-cc-danger w-100" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{%endblock body%}

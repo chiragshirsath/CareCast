@@ -1,0 +1,23 @@
+{% extends "login_base.html" %}
+
+{%block title%}Appointment Success{%endblock title%}
+
+{%block body%}
+<div class="cc-auth-wrapper">
+    <div class="text-center cc-animate-fadeInUp">
+        <div style="font-size: 5rem; color: var(--cc-emerald); margin-bottom: 1.5rem;">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h2 class="fw-bold mb-3">Appointment Fixed Successfully!</h2>
+        <p class="text-muted mb-4">Your appointment request has been submitted. The doctor will review and confirm shortly.</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="/appointmentHistory" class="btn btn-cc-primary">
+                <i class="fa-solid fa-calendar-check me-2"></i>View Appointments
+            </a>
+            <a href="/profile" class="btn btn-cc-secondary">
+                <i class="fa-solid fa-house me-2"></i>Go to Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+{%endblock body%}

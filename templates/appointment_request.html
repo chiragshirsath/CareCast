@@ -1,0 +1,56 @@
+{% extends "doctor_base.html" %}
+
+{%block title%}Appointment Requests{%endblock title%}
+
+{%block body%}
+
+<div class="container py-5">
+    <div class="cc-page-header cc-animate-fadeInUp">
+        <h1 class="cc-page-title"><i class="fa-solid fa-bell me-2 cc-text-gradient"></i>Pending Appointments</h1>
+        <p class="cc-page-subtitle">Review and schedule appointment requests from patients</p>
+    </div>
+
+    <div class="row g-4">
+        {% for app in appointment %}
+        <div class="col-12 cc-animate-fadeInUp">
+            <div class="cc-appointment-card">
+                <div class="card-body p-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h5 class="fw-bold text-capitalize mb-2">
+                                <i class="fa-solid fa-user me-2 text-primary"></i>
+                                Patient: {{ app.user.first_name }} {{ app.user.last_name }}
+                            </h5>
+                            <p class="text-muted small mb-3">
+                                <i class="fa-solid fa-envelope me-1"></i> {{ app.email }}
+                                <span class="mx-2">|</span>
+                                <i class="fa-solid fa-phone me-1"></i> {{ app.phone }}
+                            </p>
+                            <hr>
+                            <p class="mb-2"><i class="fa-solid fa-calendar me-2 text-muted"></i><strong>Appointment Date:</strong> {{ app.appointmentDate.date }}</p>
+                            <p class="mb-2">
+                                <i class="fa-solid fa-circle-info me-2"></i><strong>Status:</strong>
+                                <span class="cc-badge cc-badge-danger">{{ app.status }}</span>
+                            </p>
+                            <hr>
+                            <p class="mb-0"><i class="fa-solid fa-message me-2 text-muted"></i><strong>Message:</strong>
+                                <em class="text-muted">{{ app.message }}</em>
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                            <form method="post" action="{% url 'update_status' app.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-cc-primary">
+                                    <i class="fa-solid fa-calendar-check me-2"></i>Schedule Appointment
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{%endblock body%}

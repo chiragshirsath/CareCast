@@ -1,0 +1,51 @@
+{% extends "login_base.html" %}
+
+{%block title%}Appointment History{%endblock title%}
+
+{%block body%}
+
+<div class="container py-5">
+    <div class="cc-card cc-animate-fadeInUp">
+        <div class="card-body p-4">
+            <div class="d-flex align-items-center mb-4">
+                <div class="cc-feature-icon me-3">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <div>
+                    <h3 class="fw-bold mb-0">Appointment History</h3>
+                    <p class="text-muted mb-0 small">Track all your scheduled appointments</p>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table cc-table">
+                    <thead>
+                        <tr>
+                            <th><i class="fa-solid fa-user-doctor me-1"></i> Appointment With</th>
+                            <th><i class="fa-solid fa-calendar me-1"></i> Appointment Date</th>
+                            <th><i class="fa-solid fa-award me-1"></i> Doctor's Expertise</th>
+                            <th><i class="fa-solid fa-circle-info me-1"></i> Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for app in appointment reversed%}
+                        <tr>
+                            <td class="text-capitalize fw-medium">Dr. {{ app.doctor.first_name }} {{ app.doctor.last_name }}</td>
+                            <td>{{ app.appointmentDate.date }}</td>
+                            <td>{{ app.doctor.expertise }}</td>
+                            <td>
+                                <span class="cc-badge {% if app.status == 'Pending' %}cc-badge-danger{% else %}cc-badge-success{% endif %}">
+                                    <i class="fa-solid {% if app.status == 'Pending' %}fa-clock{% else %}fa-check-circle{% endif %} me-1"></i>
+                                    {{ app.status }}
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock body%}
