@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{%block title%}HOME{%endblock title%}
+
+{%block body%}
+
+<!-- Hero Section -->
+<section class="cc-hero">
+    <div class="container position-relative" style="z-index: 2;">
+        <div class="row align-items-center">
+            <div class="col-lg-7 cc-animate-fadeInUp">
+                <span class="cc-badge cc-badge-primary mb-3">
+                    <i class="fa-solid fa-sparkles me-1"></i> AI-Powered Health Insights
+                </span>
+                <h1 class="cc-hero-title">
+                    Welcome to<br>
+                    <span class="cc-highlight">CareCast</span>
+                </h1>
+                <p class="cc-hero-subtitle mb-4">
+                    Unveil your health journey — empower yourself with comprehensive online health predictions.
+                    Gain insights, take control, and embrace wellness today.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a class="btn btn-cc-primary btn-lg" href="/register">
+                        <i class="fa-solid fa-rocket me-2"></i>Get Started
+                    </a>
+                    <a href="/login" class="btn btn-cc-white btn-lg">
+                        <i class="fa-solid fa-right-to-bracket me-2"></i>Login Now
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block text-center cc-animate-fadeInUp cc-delay-2">
+                <div style="font-size: 12rem; opacity: 0.15; color: white; animation: cc-float 4s ease-in-out infinite;">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats / Trust Section -->
+<section class="cc-stats">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-6 cc-animate-fadeInUp">
+                <div class="cc-stat-item">
+                    <div class="cc-stat-number">3</div>
+                    <div class="cc-stat-label">ML Models</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 cc-animate-fadeInUp cc-delay-1">
+                <div class="cc-stat-item">
+                    <div class="cc-stat-number">24/7</div>
+                    <div class="cc-stat-label">Predictions</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 cc-animate-fadeInUp cc-delay-2">
+                <div class="cc-stat-item">
+                    <div class="cc-stat-number"><i class="fa-solid fa-shield-halved" style="font-size:2rem"></i></div>
+                    <div class="cc-stat-label">Secure Data</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 cc-animate-fadeInUp cc-delay-3">
+                <div class="cc-stat-item">
+                    <div class="cc-stat-number"><i class="fa-solid fa-file-medical" style="font-size:2rem"></i></div>
+                    <div class="cc-stat-label">Detailed Reports</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="cc-section">
+    <div class="container">
+        <h2 class="cc-section-heading">How It Works</h2>
+        <div class="cc-divider"></div>
+        <p class="cc-section-subheading">Three simple steps to understand your health better</p>
+
+        <div class="row g-4">
+            <div class="col-md-4 cc-animate-fadeInUp">
+                <div class="cc-feature-card h-100">
+                    <div class="cc-feature-icon">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+                    <h4>Take Online Test</h4>
+                    <p class="text-muted mt-3">Engage in online assessments tailored to your health concerns, providing valuable insights and guidance for optimizing your overall health and lifestyle.</p>
+                </div>
+            </div>
+            <div class="col-md-4 cc-animate-fadeInUp cc-delay-1">
+                <div class="cc-feature-card h-100">
+                    <div class="cc-feature-icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <h4>Fix Appointment</h4>
+                    <p class="text-muted mt-3">Seamlessly book appointments to consult with healthcare professionals and specialists, ensuring timely access to expert advice and support.</p>
+                </div>
+            </div>
+            <div class="col-md-4 cc-animate-fadeInUp cc-delay-2">
+                <div class="cc-feature-card h-100">
+                    <div class="cc-feature-icon">
+                        <i class="fa-solid fa-file-medical"></i>
+                    </div>
+                    <h4>Obtain Report</h4>
+                    <p class="text-muted mt-3">Effortlessly retrieve detailed reports summarizing your health status, enabling informed decision-making and proactive management of your well-being.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Doctor CTA Section -->
+<section class="cc-doctor-cta">
+    <div class="container position-relative" style="z-index: 2;">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center cc-animate-fadeInUp">
+                <span class="cc-badge cc-badge-info mb-3">
+                    <i class="fa-solid fa-user-doctor me-1"></i> For Healthcare Professionals
+                </span>
+                <h2 class="text-white mb-3" style="font-size: 2.25rem;">Are you a Doctor?</h2>
+                <p class="text-white-50 mb-4" style="font-size: 1.05rem; max-width: 600px; margin: 0 auto;">
+                    Register yourself to become a valuable contributor to our health community.
+                    Share your expertise, provide support, and make a difference in others' lives.
+                    Schedule appointments conveniently to engage with clients.
+                </p>
+                <div class="d-flex flex-wrap gap-3 justify-content-center mt-4">
+                    <a class="btn btn-cc-primary btn-lg" href="/doctor_register">
+                        <i class="fa-solid fa-user-plus me-2"></i>Doctor Registration
+                    </a>
+                    <a class="btn btn-cc-white btn-lg" href="/doctor_login">
+                        <i class="fa-solid fa-right-to-bracket me-2"></i>Doctor Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{%endblock body%}

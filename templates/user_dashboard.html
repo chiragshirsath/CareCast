@@ -1,0 +1,57 @@
+{% extends "login_base.html" %}
+
+{%block title%}Dashboard{%endblock title%}
+
+{%block body%}
+
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-12 text-center cc-animate-fadeInUp">
+            <h1 class="cc-page-title">Welcome, {{ user_name }}!</h1>
+            <p class="cc-page-subtitle">Dashboard for: @{{ user_username }}</p>
+        </div>
+    </div>
+
+    <div class="row g-4 mt-2">
+        <div class="col-md-4 cc-animate-fadeInUp">
+            <div class="cc-dash-card">
+                <div class="cc-dash-icon cc-text-gradient">
+                    <i class="fa-solid fa-stethoscope"></i>
+                </div>
+                <h5 class="fw-bold">Take a Health Test</h5>
+                <p class="text-muted small">Predict Mental Disorders, PCOS, or Obesity.</p>
+                <a href="{% url 'health_prediction' %}" class="btn btn-cc-primary mt-2">
+                    <i class="fa-solid fa-play me-1"></i> Start Test
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4 cc-animate-fadeInUp cc-delay-1">
+            <div class="cc-dash-card">
+                <div class="cc-dash-icon" style="color: var(--cc-emerald);">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <h5 class="fw-bold">Book Appointment</h5>
+                <p class="text-muted small">Schedule a visit with a healthcare professional.</p>
+                <a href="{% url 'fix_appointment' %}" class="btn btn-cc-primary mt-2">
+                    <i class="fa-solid fa-calendar-plus me-1"></i> Book Now
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4 cc-animate-fadeInUp cc-delay-2">
+            <div class="cc-dash-card">
+                <div class="cc-dash-icon" style="color: var(--cc-info);">
+                    <i class="fa-solid fa-folder-open"></i>
+                </div>
+                <h5 class="fw-bold">Test History</h5>
+                <p class="text-muted small">View your past health prediction reports.</p>
+                <a href="{% url 'test_history' %}" class="btn btn-cc-primary mt-2">
+                    <i class="fa-solid fa-clock-rotate-left me-1"></i> View History
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock body%}
